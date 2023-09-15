@@ -13,3 +13,7 @@ It's made in [Python 3.11](https://www.python.org/downloads/release/python-3110/
 ## Dependecies
 - Python 3.x (preferably Python 3.11) and all included packages (tkinter, csv, datetime, os, random)
 - [win10toast](https://pypi.org/project/win10toast/)
+
+## To do
+- Implement preferences menu
+- Implement help and about menus
