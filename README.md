@@ -17,3 +17,5 @@ It's made in [Python 3.11](https://www.python.org/downloads/release/python-3110/
 ## To do
 - Implement preferences menu
 - Implement help and about menus
+- Implement CLI utility because why not
+- Make it work for linux, the superior OS
