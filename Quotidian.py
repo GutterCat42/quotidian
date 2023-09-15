@@ -250,7 +250,7 @@ new_button.grid(row=1, column=1, columnspan=3)
 
 quotes_display = scrolledtext.ScrolledText(root, font=("Segoe UI", 10))
 quotes_display.grid(row=2, column=1, columnspan=3)
-credit_label = tk.Label(root, text="Quotidian v0.1 by Gutter Cat Software")
+credit_label = tk.Label(root, text="Quotidian pre-release by Gutter Cat Software")
 credit_label.grid(row=3, column=1, columnspan=3)
 
 if not exists(QUOTES_PATH):
