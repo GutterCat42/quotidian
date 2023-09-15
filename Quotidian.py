@@ -5,12 +5,12 @@ from datetime import date
 from os.path import expanduser, exists
 from tkinter import scrolledtext, constants
 
-QUOTES_PATH = expanduser("~") + "\quotes.csv"
+QUOTES_PATH = expanduser("~") + "/quotes.csv"
 
 
 def clean_csv():
     lines = []
-    with open(QUOTES_PATH, "r") as read_file:
+    with open(QUOTES_PATH) as read_file:
         file_reader = reader(read_file)
         for row in file_reader:
             if len(row) == 3:
@@ -66,7 +66,7 @@ def display_pretty_quotes_list():
     global quotes_display
 
     pretty_list = ""
-    with open(QUOTES_PATH, "r") as quotes_file:
+    with open(QUOTES_PATH) as quotes_file:
         file_reader = reader(quotes_file)
         for row in file_reader:
             if len(row) == 3:
@@ -79,7 +79,7 @@ def display_pretty_quotes_list():
 
 def confirm_edit_quote(index, quote, quotee, date):
     if quote != "" and quotee != "" and date != "":
-        with open(QUOTES_PATH, "r") as read_file:
+        with open(QUOTES_PATH) as read_file:
             file_reader = reader(read_file)
             lines = []
             for row in file_reader:
@@ -106,7 +106,7 @@ def choose_edit_quote():
     global choose_edit_dialog, edit_listbox
 
     quotes_list = []
-    with open(QUOTES_PATH, "r") as quotes_file:
+    with open(QUOTES_PATH) as quotes_file:
         file_reader = reader(quotes_file)
         for row in file_reader:
             if len(row) == 3:
@@ -145,7 +145,7 @@ def choose_edit_quote():
 def delete_quote(index):
     global edit_dialog, edit_listbox
 
-    with open(QUOTES_PATH, "r") as read_file:
+    with open(QUOTES_PATH) as read_file:
         file_reader = reader(read_file)
         lines = []
         for row in file_reader:
@@ -177,7 +177,7 @@ def edit_quote():
     edit_dialog.title("Edit quote")
 
     edit_listbox = tk.Listbox(edit_dialog)
-    with open(QUOTES_PATH, "r") as quotes_file:
+    with open(QUOTES_PATH) as quotes_file:
         file_reader = reader(quotes_file)
         for row in file_reader:
             if len(row) == 3:
