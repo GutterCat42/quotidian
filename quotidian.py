@@ -5,7 +5,8 @@ from datetime import date
 from os.path import expanduser, exists
 from tkinter import scrolledtext, constants
 
-QUOTES_PATH = expanduser("~") + "/quotes.csv"
+#QUOTES_PATH = expanduser("~/.quotidian/quotes.csv")
+QUOTES_PATH = "quotes.csv"
 
 
 def clean_csv():
@@ -254,7 +255,7 @@ credit_label = tk.Label(root, text="Quotidian pre-release by Gutter Cat Software
 credit_label.grid(row=3, column=1, columnspan=3)
 
 if not exists(QUOTES_PATH):
-    open(QUOTES_PATH, "a").close()
+    open(QUOTES_PATH, "x")
 
 display_pretty_quotes_list()
 
