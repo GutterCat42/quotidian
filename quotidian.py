@@ -7,6 +7,7 @@ from tkinter import scrolledtext, constants
 
 #QUOTES_PATH = expanduser("~/.quotidian/quotes.csv")
 QUOTES_PATH = "quotes.csv"
+PREFERENCES_PATH = "preferences.csv"
 
 
 def clean_csv():
@@ -198,7 +199,7 @@ def edit_quote():
 
 
 def confirm_preferences():
-    with open("preferences.csv", "w") as pref_file:
+    with open(PREFERENCES_PATH, "w") as pref_file:
         file_writer = writer(pref_file)
         file_writer.writerow([])
         pref_file.close()
