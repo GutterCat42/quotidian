@@ -25,14 +25,17 @@ def clean_csv():
         write_file.close()
 
 
+def create_new_quote(quote, quotee, date):
+    with open(QUOTES_PATH, "a") as quotes_file:
+        file_writer = writer(quotes_file)
+        file_writer.writerow([quote, quotee, date])
+        quotes_file.close()
+
+
 def confirm_new_quote(quote, quotee, date):
     if quote != "" and quotee != "" and date != "":
         new_dialog.destroy()
-        with open(QUOTES_PATH, "a") as quotes_file:
-            file_writer = writer(quotes_file)
-            file_writer.writerow([quote, quotee, date])
-            quotes_file.close()
-
+        create_new_quote(quote, quotee, date)
         display_pretty_quotes_list()
 
 
@@ -217,6 +220,40 @@ def edit_preferences():
     pref_confirm.grid(row=3, column=1, columnspan=2)
 
 
+def import_quotes():
+    if askyesno(title="Confirm import", default="no", message="Are you sure you want to import quotes in standard format from the file 'import.txt'?"):
+        if exists("import.txt"):
+            import_quotes = []
+            with open("import.txt") as import_file:
+                for line in import_file.readlines():
+                    if line.rstrip() != "":
+                        quote_data = line.rstrip().split(",")
+                        
+                        if quote_data[0][0] == '"':
+                            quote = quote_data[0].replace('"', '')
+                        elif quote_data[0][0] == "'":
+                            quote = quote_data[0].replace("'", "")
+                        
+                        if quote_data[1][0] == " ":
+                            quotee = quote_data[1][1:]
+                        else:
+                            quotee = quote_data[1]
+
+                        if quote_data[2][0] == " ":
+                            date = quote_data[2][1:]
+                        else:
+                            date = quote_data[2]
+
+                        import_quotes.append([quote, quotee, date])
+                
+                import_file.close()
+
+            for quote in import_quotes:
+                create_new_quote(quote[0], quote[1], quote[2])
+
+            display_pretty_quotes_list()
+
+
 def show_help():
     pass
 
@@ -233,6 +270,7 @@ root.config(menu=menu)
 file_menu = tk.Menu(menu, tearoff=0)
 menu.add_cascade(label="File", menu=file_menu)
 file_menu.add_command(label="New quote", command=new_quote)
+file_menu.add_command(label="Import quotes", command=import_quotes)
 file_menu.add_separator()
 file_menu.add_command(label="Exit", command=root.destroy)
 
