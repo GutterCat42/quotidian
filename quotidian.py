@@ -2,12 +2,13 @@ import tkinter as tk
 from tkinter.messagebox import askyesno
 from csv import writer, reader
 from datetime import date
+from os import mkdir
 from os.path import expanduser, exists
 from tkinter import scrolledtext, constants
 
-#QUOTES_PATH = expanduser("~/.quotidian/quotes.csv")
-QUOTES_PATH = "quotes.csv"
-PREFERENCES_PATH = "preferences.csv"
+DATA_DIR = expanduser("~/.quotidian")
+QUOTES_PATH = DATA_DIR + "/quotes.csv"
+PREFERENCES_PATH = DATA_DIR + "/preferences.csv"
 
 
 def clean_csv():
@@ -255,8 +256,10 @@ quotes_display.grid(row=2, column=1, columnspan=3)
 credit_label = tk.Label(root, text="Quotidian pre-release by Gutter Cat Software")
 credit_label.grid(row=3, column=1, columnspan=3)
 
-if not exists(QUOTES_PATH):
-    open(QUOTES_PATH, "x")
+if not exists(DATA_DIR):
+    mkdir(DATA_DIR)
+    open(QUOTES_PATH, "x").close()
+    open(PREFERENCES_PATH, "x").close()
 
 display_pretty_quotes_list()
 

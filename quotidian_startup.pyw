@@ -1,10 +1,9 @@
-import notify2
+from notifypy import Notify
 from csv import reader
 from random import choice
 from os.path import expanduser, exists
 
-#QUOTES_PATH = expanduser("~/.quotidian/quotes.csv")
-QUOTES_PATH = "quotes.csv"
+QUOTES_PATH = expanduser("~/.quotidian/quotes.csv")
 
 if not exists(QUOTES_PATH):
     quit()
@@ -22,7 +21,7 @@ if not quotes:
 
 quote = choice(quotes)
 
-notify2.init("Quotidian")
-notification = notify2.Notification("Quote of the day", f'"{quote[0]}" - {quote[1]}, {quote[2]}\n')
-notification.set_timeout(5000)
-notification.show()
+notification = Notify()
+notification.title = "Quote of the day"
+notification.message = f'"{quote[0]}" - {quote[1]}, {quote[2]}\n'
+notification.send(block=False)
