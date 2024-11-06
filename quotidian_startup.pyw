@@ -24,4 +24,5 @@ quote = choice(quotes)
 notification = Notify()
 notification.title = "Quote of the day"
 notification.message = f'"{quote[0]}" - {quote[1]}, {quote[2]}\n'
+notification.icon = "dummy_icon.png"
 notification.send(block=False)
