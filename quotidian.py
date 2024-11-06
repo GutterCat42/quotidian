@@ -231,22 +231,9 @@ def import_quotes():
             with open("import.txt") as import_file:
                 for line in import_file.readlines():
                     if line.rstrip() != "":
-                        quote_data = re.split("[,\-]", line.rstrip())
-
-                        if quote_data[0][0] == '"':
-                            quote = quote_data[0].replace('"', '')
-                        elif quote_data[0][0] == "'":
-                            quote = quote_data[0].replace("'", "")
-                        
-                        if quote_data[1][0] == " ":
-                            quotee = quote_data[1][1:]
-                        else:
-                            quotee = quote_data[1]
-
-                        if quote_data[2][0] == " ":
-                            date = quote_data[2][1:]
-                        else:
-                            date = quote_data[2]
+                        quote = line[line.find('"')+1:line.rfind('"')]
+                        quotee = line[line.rfind('- ')+2:line.rfind(', ')]
+                        date = line[line.rfind(', ')+2:]
 
                         import_quotes.append([quote, quotee, date])
                 
