@@ -80,7 +80,7 @@ def display_pretty_quotes_list():
                 pretty_list = pretty_list + f'"{row[0]}" - {row[1]}, {row[2]}\n'
 
     quotes_display.config(state=constants.NORMAL)
-    quotes_display.delete('1.0', constants.END)
+    quotes_display.delete("1.0", constants.END)
     quotes_display.insert(constants.INSERT, "\n" + pretty_list)
     quotes_display.config(state=constants.DISABLED)
 
