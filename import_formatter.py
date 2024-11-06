@@ -19,7 +19,8 @@ def run_formatter():
             elif line[0] in list("1234567890/-"):
                 date = line.split()[0]
             else:
-                if not person: person = line.split()[0]
+                if "quotes" in line.lower():
+                    person = line.split()[0]
 
             if quote and date and person:
                 formatted_quotes = formatted_quotes + '"' + quote + '" - ' + person + ", " + date + "\n"
