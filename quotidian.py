@@ -1,3 +1,4 @@
+import re
 import tkinter as tk
 from tkinter.messagebox import askyesno
 from csv import writer, reader
@@ -175,6 +176,7 @@ def delete_quote(index):
 
     edit_dialog.destroy()
     display_pretty_quotes_list()
+    edit_quote()
 
 
 def edit_quote():
@@ -229,8 +231,8 @@ def import_quotes():
             with open("import.txt") as import_file:
                 for line in import_file.readlines():
                     if line.rstrip() != "":
-                        quote_data = line.rstrip().split(",")
-                        
+                        quote_data = re.split("[,\-]", line.rstrip())
+
                         if quote_data[0][0] == '"':
                             quote = quote_data[0].replace('"', '')
                         elif quote_data[0][0] == "'":
