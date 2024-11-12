@@ -18,3 +18,4 @@ It's made in [Python 3.11](https://www.python.org/downloads/release/python-3110/
 - Implement preferences menu
 - Implement help and about menus
 - Implement CLI utility because why not
+- Add some sort of 'installer', mainly for `quotidian_startup.pyw` (but also maybe for the other files)
